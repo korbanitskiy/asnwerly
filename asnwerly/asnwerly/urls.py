@@ -15,10 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import qanda.urls
+import user.urls
 from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("user/", include(user.urls, namespace="user")),
     path("", include(qanda.urls, namespace="qanda")),
 ]

@@ -32,15 +32,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "user",
+    "qanda",
+    "crispy_forms",
+    "markdownify",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "crispy_forms",
-    "user",
-    "qanda",
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,7 @@ MARKDOWNIFY_WHITELIST_TAGS = [
     "strong",
     "ul",
 ]
+
+LOGIN_URL = "user:login"
+LOGIN_REDIRECT_URL = "questions:index"
+LOGOUT_REDIRECT_URL = "questions:index"

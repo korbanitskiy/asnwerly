@@ -112,7 +112,7 @@ class TodaysQuestionList(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         today = timezone.now()
         return reverse(
-            "question:sdaily_questions",
+            "questions:daily_questions",
             kwargs={
                 "day": today.day,
                 "month": today.month,
