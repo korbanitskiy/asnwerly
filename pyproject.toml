@@ -12,6 +12,9 @@ pre-commit = "^3.3.3"
 django-markdownify = "^0.9.3"
 django-crispy-forms = "^2.0"
 elasticsearch = "7.17.9"
+coverage = "^7.2.7"
+factory-boy = "^3.2.1"
+crispy-bootstrap4 = "^2022.1"
 
 
 [build-system]

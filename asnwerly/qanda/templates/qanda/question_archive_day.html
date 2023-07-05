@@ -11,7 +11,7 @@
             {{ question.votes }}
             <a href="{{ question.get_absolute_url }}">{{question}}</a>
             by {{ question.user }}
-            on {{ question.created }}
+            on {{ question.created|date:'Y-m-d H:i'}}
         </li>
         {% empty %}
         <li> Hm... Everyone thinks they know everything today.</li>

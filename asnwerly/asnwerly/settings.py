@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "user",
     "qanda",
     "crispy_forms",
+    "crispy_bootstrap4",
     "markdownify.apps.MarkdownifyConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -62,7 +63,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "asnwerly/templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -142,8 +143,8 @@ MARKDOWNIFY = {
 }
 
 LOGIN_URL = "user:login"
-LOGIN_REDIRECT_URL = "questions:index"
-LOGOUT_REDIRECT_URL = "questions:index"
+LOGIN_REDIRECT_URL = "qanda:todays_questions"
+LOGOUT_REDIRECT_URL = "qanda:todays_questions"
 
 ES_INDEX = "answerly"
 ES_HOST = "localhost"
