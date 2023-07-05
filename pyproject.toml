@@ -11,6 +11,7 @@ django = "^4.2.3"
 pre-commit = "^3.3.3"
 django-markdownify = "^0.9.3"
 django-crispy-forms = "^2.0"
+elasticsearch = "7.17.9"
 
 
 [build-system]

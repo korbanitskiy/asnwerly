@@ -11,8 +11,8 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
-                <a class="navbar-expand" href="/">Answerly</a>
-                <ul class="navbar-nav"></ul>
+                <a class="navbar-brand" href="/">Answerly</a>
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{% url 'qanda:ask' %}">Ask</a>
@@ -36,6 +36,14 @@
                                href="{% url 'user:register' %}">Register</a>
                         </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <form class="form-inline"
+                              action="{% url 'qanda:question_search' %}"
+                              method="get">
+                            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>

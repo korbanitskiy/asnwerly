@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "user",
     "qanda",
     "crispy_forms",
-    "markdownify",
+    "markdownify.apps.MarkdownifyConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -126,29 +126,25 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "asnwerly/static"),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MARKDOWNIFY_STRIP = False
-MARKDOWNIFY_WHITELIST_TAGS = [
-    "a",
-    "blockquote",
-    "code",
-    "em",
-    "h1",
-    "h2",
-    "h7",
-    "li",
-    "ol",
-    "p",
-    "strong",
-    "ul",
-]
+
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": ["a", "p", "h1", "blockquote", "em", "h2", "li", "p", "strong", "ul"],
+        "STRIP": False,
+    },
+}
 
 LOGIN_URL = "user:login"
 LOGIN_REDIRECT_URL = "questions:index"
 LOGOUT_REDIRECT_URL = "questions:index"
+
+ES_INDEX = "answerly"
+ES_HOST = "localhost"
+ES_PORT = "9200"
