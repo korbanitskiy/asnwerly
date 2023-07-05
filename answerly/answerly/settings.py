@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-)9d^)&uu7ukbys)u01r2m*^p*!^j%lw%fu(g&=xb32nnxa(*7c"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "test-dev-secret-key")
+assert SECRET_KEY is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(" ")
 
 
 # Application definition
@@ -57,13 +58,13 @@ MIDDLEWARE = [
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-ROOT_URLCONF = "asnwerly.urls"
+ROOT_URLCONF = "answerly.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, "asnwerly/templates"),
+            os.path.join(BASE_DIR, "answerly/templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -85,8 +86,12 @@ WSGI_APPLICATION = "asnwerly.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": os.getenv("DJANGO_DB_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.getenv("DJANGO_DB_NAME", BASE_DIR / "db.sqlite3"),
+        "USER": os.getenv("DJANGO_DB_USER", "user"),
+        "PASSWORD": os.getenv("DJANGO_DB_PASSWORD", "password"),
+        "HOST": os.getenv("DJANGO_DB_HOST", "localhost"),
+        "PORT": os.getenv("DJANGO_DB_PORT", 5432),
     }
 }
 
@@ -126,8 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "asnwerly/static"),
+    os.path.join(BASE_DIR, "answerly/static"),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
