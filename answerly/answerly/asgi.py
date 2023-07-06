@@ -1,5 +1,5 @@
 """
-ASGI config for asnwerly project.
+ASGI config for answerly project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

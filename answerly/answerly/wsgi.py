@@ -1,5 +1,5 @@
 """
-WSGI config for asnwerly project.
+WSGI config for answerly project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

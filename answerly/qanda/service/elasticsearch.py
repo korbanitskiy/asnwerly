@@ -21,7 +21,7 @@ def _question_to_dict(question):
     return {
         "_id": question.id,
         "_type": "doc",
-        "text": f"{question.title}\n{question}",
+        "text": f"{question.title}\n{question.question}",
         "question_body": question.question,
         "title": question.title,
         "id": question.id,
@@ -63,12 +63,10 @@ def search_for_questions(query):
 def upsert(question):
     client = get_client()
     question_as_dict = _question_to_dict(question)
-    doc_type = question_as_dict["_type"]
-    question_as_dict.pop("_id")
     question_as_dict.pop("_type")
+    question_as_dict.pop("_id")
     response = client.update(
-        settings.ES_INDEX,
-        doc_type,
+        index=settings.ES_INDEX,
         id=question.id,
         body={
             "doc": question_as_dict,

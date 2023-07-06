@@ -16,9 +16,13 @@
 {% if query %}
 <h3>Results from search query '{{ query }}'</h3>
 <ul class="list-unstyled search-results">
-    {% for hit in hits }
+    {% for hit in hits %}
         <li>
-            <a href="{% url 'qanda:question_detail' pk=hit.id %}">{{ hit.title }}</a>
+            {% if hit.id %}
+                <a href="{% url 'qanda:question_detail' pk=hit.id %}">{{ hit.title }}</a>
+            {% else %}
+                {{ hit.title }}
+            {% endif %}
             <div>
                 {{ hit.question_body|markdownify|truncatewords_html:20 }}
             </div>

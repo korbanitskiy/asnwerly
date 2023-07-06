@@ -23,7 +23,7 @@ class AnswerForm(forms.ModelForm):
     )
     question = forms.ModelChoiceField(
         widget=forms.HiddenInput,
-        queryset=get_user_model().objects.all(),
+        queryset=Question.objects.all(),
         disabled=True,
     )
 

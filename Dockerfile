@@ -13,6 +13,6 @@ COPY README.md .
 COPY poetry.lock pyproject.toml .
 RUN poetry install --no-dev
 
-COPY asnwerly .
+COPY answerly .
 
-ENTRYPOINT ["/answerly/entrypoint.sh"]
+# ENTRYPOINT ["/answerly/entrypoint.sh"]

@@ -5,13 +5,14 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./asnwerly/:/answerly
+      - ./answerly/:/answerly
     ports:
       - 8000:8000
     env_file:
       - ./.env.dev
     depends_on:
       - db
+      - elasticsearch
 
   db:
     image: postgres:13.0-alpine
@@ -22,5 +23,17 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=answerly
 
+  elasticsearch:
+    image: elasticsearch:7.17.9
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+
 volumes:
   postgres_data:
+  elasticsearch-data:
