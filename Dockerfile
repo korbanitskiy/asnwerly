@@ -15,4 +15,4 @@ RUN poetry install --no-dev
 
 COPY answerly .
 
-# ENTRYPOINT ["/answerly/entrypoint.sh"]
+ENTRYPOINT ["/answerly/entrypoint.sh"]
